@@ -2,16 +2,25 @@
 <html>
   <head>
   	<title>Snake Game</title>
-   
   </head>
 
   <body>
-   
+   <div id ="name"> WELCOME TO THIS CLASSIC SNAKE GAME</div>
     <div id="score">SCORE : 0</div>
+    <span id="end"></span>
+    <span id="restart"></span>
     
     <canvas id="snakeboard" width="400" height="400"></canvas>
 
     <style>
+      *
+      {
+        background-image: url("image.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:cover;
+ background-color: #cccccc;
+      }
       #snakeboard {
         position: absolute;
         top: 50%;
@@ -24,7 +33,16 @@
       }
       #score {
         text-align: center;
-        font-size: 140px;
+        font-size: 30px;
+        color:#cccccc;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      #name
+      {
+        text-align:center;
+        font-size: 50px;
+        color:azure;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
       }
     </style>
   </body>
@@ -69,8 +87,9 @@
     // main function called repeatedly to keep the game running
     function main() {
 
-        if (has_game_ended()) return;
-
+        if (has_game_ended())
+        ended();
+        
         changing_direction = false;
         setTimeout(function onTick() {
         clear_board();
@@ -81,6 +100,10 @@
         main();
       }, 100)
     }
+    function ended(){
+    alert("GAME OVER !!!") ;
+    
+    return;}
     
     // draw a border around the canvas
     function clear_board() {
@@ -191,7 +214,7 @@
         // Increase score
         score += 10;
         // Display score on screen
-        document.getElementById('score').innerHTML = score;
+        document.getElementById('score').innerHTML ="SCORE :"+ score;
         // Generate new food location
         gen_food();
       } else {
